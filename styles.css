@@ -1,0 +1,69 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ffcccb, #ffebcd, #e0ffff, #add8e6);
+    background-size: 300% 300%;
+    animation: gradientAnimation 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+    color: #000; /* Mengubah warna teks menjadi hitam */
+    text-shadow: none; /* Menghilangkan bayangan teks */
+}
+
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.member {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: 200px;
+    color: #000; /* Mengubah warna teks menjadi hitam */
+}
+
+.member img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.internship {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #000; /* Mengubah warna teks menjadi hitam */
+}
+
+@media (max-width: 600px) {
+    .member {
+        width: 80%;
+    }
+}

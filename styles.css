@@ -13,6 +13,7 @@ body, html {
     background-size: 300% 300%;
     animation: gradientAnimation 15s ease infinite;
     z-index: -1;
+    transition: background 1s ease;
 }
 
 @keyframes gradientAnimation {
@@ -24,8 +25,8 @@ body, html {
 header {
     text-align: center;
     padding: 2rem;
-    color: #000; /* Mengubah warna teks menjadi hitam */
-    text-shadow: none; /* Menghilangkan bayangan teks */
+    color: #000;
+    text-shadow: none;
 }
 
 .team {
@@ -43,13 +44,19 @@ header {
     padding: 1rem;
     text-align: center;
     width: 200px;
-    color: #000; /* Mengubah warna teks menjadi hitam */
+    color: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .member img {
     border-radius: 50%;
     width: 100px;
     height: 100px;
+}
+
+.member:active {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .internship {
@@ -59,7 +66,7 @@ header {
     margin: 2rem 1rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #000; /* Mengubah warna teks menjadi hitam */
+    color: #000;
 }
 
 @media (max-width: 600px) {

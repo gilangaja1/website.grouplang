@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal');
     const modalContent = document.getElementById('modal-info');
     const closeModal = document.querySelector('.close');
+    const contactForm = document.getElementById('contact-form');
 
     background.addEventListener('touchstart', () => {
         body.classList.toggle('active');
@@ -29,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === modal) {
             modal.style.display = "none";
         }
+    });
+
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        alert('Form submitted!');
     });
 });
 

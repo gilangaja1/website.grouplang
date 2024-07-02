@@ -37,15 +37,16 @@ header {
     font-size: 50px;
     font-weight: bold;
     color: #000;
-    animation: colorChange 2s infinite;
+    animation: fadeInOut 3s infinite; /* Animasi untuk logo "L" */
 }
 
-@keyframes colorChange {
-    0% { color: #ff0000; }
-    25% { color: #00ff00; }
-    50% { color: #0000ff; }
-    75% { color: #ffff00; }
-    100% { color: #ff0000; }
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0; /* Logo tidak terlihat pada awal dan akhir animasi */
+    }
+    50% {
+        opacity: 1; /* Logo terlihat di tengah-tengah animasi */
+    }
 }
 
 .team {
@@ -91,6 +92,64 @@ header {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #000;
+}
+
+/* Testimonials Styling */
+.testimonials {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #000;
+}
+
+.testimonial {
+    margin: 1rem 0;
+}
+
+/* Contact Form Styling */
+.contact {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #000;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact label {
+    margin-top: 1rem;
+}
+
+.contact input, .contact textarea {
+    width: 80%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.contact button {
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background-color: #0056b3;
 }
 
 /* Modal Styling */

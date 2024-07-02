@@ -37,15 +37,15 @@ header {
     font-size: 50px;
     font-weight: bold;
     color: #000;
-    animation: fadeInOut 3s infinite; /* Animasi untuk logo "L" */
+    animation: fadeInOut 3s infinite;
 }
 
 @keyframes fadeInOut {
     0%, 100% {
-        opacity: 0; /* Logo tidak terlihat pada awal dan akhir animasi */
+        opacity: 0;
     }
     50% {
-        opacity: 1; /* Logo terlihat di tengah-tengah animasi */
+        opacity: 1;
     }
 }
 
@@ -84,18 +84,7 @@ header {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.internship {
-    text-align: center;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
-    margin: 2rem 1rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #000;
-}
-
-/* Testimonials Styling */
-.testimonials {
+.internship, .testimonials, .contact {
     text-align: center;
     padding: 2rem;
     background: rgba(255, 255, 255, 0.9);
@@ -107,17 +96,6 @@ header {
 
 .testimonial {
     margin: 1rem 0;
-}
-
-/* Contact Form Styling */
-.contact {
-    text-align: center;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
-    margin: 2rem 1rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #000;
 }
 
 .contact form {
@@ -153,7 +131,7 @@ header {
 }
 
 /* Modal Styling */
-.modal {
+.modal, #lightbox-modal {
     display: none;
     position: fixed;
     z-index: 10;
@@ -165,7 +143,7 @@ header {
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
+.modal-content, #lightbox-modal .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -175,15 +153,14 @@ header {
     border-radius: 10px;
 }
 
-.close {
+.close, #lightbox-modal .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus, #lightbox-modal .close:hover, #lightbox-modal .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -193,4 +170,29 @@ header {
     .member {
         width: 80%;
     }
+}
+
+/* Lightbox Modal */
+#lightbox-image {
+    margin: 15% auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+#lightbox-modal .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#lightbox-modal .close:hover,
+#lightbox-modal .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
 }

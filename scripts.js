@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalContent = document.getElementById('modal-info');
     const closeModal = document.querySelector('.close');
     const contactForm = document.getElementById('contact-form');
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const closeLightbox = lightboxModal.querySelector('.close');
 
     background.addEventListener('touchstart', () => {
         body.classList.toggle('active');
@@ -18,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         member.addEventListener('click', () => {
             const memberId = member.getAttribute('data-member');
-            showModal(memberId);
+            const memberImageSrc = member.querySelector('img').src;
+            showModal(memberId, memberImageSrc);
         });
     });
 
@@ -36,6 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         alert('Form submitted!');
     });
+
+    closeLightbox.addEventListener('click', () => {
+        lightboxModal.style.display = "none";
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === lightboxModal) {
+            lightboxModal.style.display = "none";
+        }
+    });
 });
 
 function getRandomColor() {
@@ -47,15 +61,20 @@ function getRandomColor() {
     return color;
 }
 
-function showModal(memberId) {
+function showModal(memberId, memberImageSrc) {
     const memberDetails = {
         "1": "Detail lengkap anggota 1.",
         "2": "Detail lengkap anggota 2.",
         "3": "Detail lengkap anggota 3.",
         "4": "Detail lengkap anggota 4."
     };
-    
+
     const modalContent = document.getElementById('modal-info');
     modalContent.innerHTML = memberDetails[memberId];
     document.getElementById('modal').style.display = "block";
+
+    // Display image in lightbox
+    const lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.src = memberImageSrc;
+    document.getElementById('lightbox-modal').style.display = "block";
 }

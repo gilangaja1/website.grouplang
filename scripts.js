@@ -1,58 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     const toggleTheme = document.getElementById('toggle-theme');
+    const body = document.body;
+    const logoImage = document.getElementById('logo-image');
+    const members = document.querySelectorAll('.member');
+    const modal = document.getElementById('modal');
+    const modalContent = modal.querySelector('.modal-content');
+    const modalClose = modal.querySelector('.close');
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxClose = lightboxModal.querySelector('.close');
+    const contactForm = document.getElementById('contact-form');
+    const loading = document.querySelector('.loading');
+
+    // Toggle dark mode
     toggleTheme.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
+        body.classList.toggle('dark-mode');
     });
 
-    const fadeElements = document.querySelectorAll('.fade-in');
-    
-    const handleScroll = () => {
-        fadeElements.forEach(element => {
-            const rect = element.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                element.classList.add('show');
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Run on page load
-
-    const items = document.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
+    // Fade in and out animation for the logo
+    logoImage.classList.add('fade-in');
 
     setInterval(() => {
-        items.forEach((item, index) => {
-            item.style.transform = `translateX(-${currentIndex * 100}%)`;
-        });
-        currentIndex = (currentIndex + 1) % items.length;
-    }, 3000);
-
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        if (name && email && message) {
-            alert('Form submitted!');
+        if (logoImage.classList.contains('fade-in')) {
+            logoImage.classList.remove('fade-in');
+            logoImage.classList.add('fade-out');
         } else {
-            alert('Please fill in all fields.');
+            logoImage.classList.remove('fade-out');
+            logoImage.classList.add('fade-in');
         }
-    });
+    }, 5000); // Change logo visibility every 5 seconds
 
-    // Modal and Lightbox functionality
-    const modal = document.getElementById('modal');
-    const lightboxModal = document.getElementById('lightbox-modal');
-    const modalClose = document.querySelector('.modal .close');
-    const lightboxClose = document.querySelector('#lightbox-modal .close');
-    
-    const members = document.querySelectorAll('.member');
+    // Modal functionality
     members.forEach(member => {
         member.addEventListener('click', () => {
             const memberId = member.getAttribute('data-member');
-            document.getElementById('modal-info').textContent = `Details of Member ${memberId}`;
+            const memberInfo = document.querySelector(`.member-info[data-member="${memberId}"]`);
+            modalContent.querySelector('#modal-info').innerHTML = memberInfo.innerHTML;
             modal.style.display = 'block';
         });
     });
@@ -67,15 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Lightbox for images
-    const lightboxImages = document.querySelectorAll('.member img');
-    const lightboxImage = document.getElementById('lightbox-image');
-    
-    lightboxImages.forEach(img => {
-        img.addEventListener('click', (event) => {
-            event.stopPropagation();
-            lightboxImage.src = img.src;
-            lightboxModal.style.display = 'block';
+    // Lightbox functionality
+    members.forEach(member => {
+        member.addEventListener('click', (event) => {
+            if (event.target.tagName === 'IMG') {
+                lightboxImage.src = event.target.src;
+                lightboxModal.style.display = 'block';
+            }
         });
     });
 
@@ -89,15 +70,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    window.addEventListener('load', () => {
-        document.querySelector('.loading').classList.add('hide');
+    // Form submission with loading spinner
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        loading.classList.remove('hide');
+
+        // Simulate form submission process
+        setTimeout(() => {
+            loading.classList.add('hide');
+            alert('Form submitted successfully!');
+            contactForm.reset();
+        }, 2000);
     });
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            document.querySelector('header').classList.add('shrink');
-        } else {
-            document.querySelector('header').classList.remove('shrink');
-        }
+    // Hide loading spinner after page load
+    window.addEventListener('load', () => {
+        loading.classList.add('hide');
     });
 });

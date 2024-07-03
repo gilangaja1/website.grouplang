@@ -11,6 +11,21 @@ body.dark-mode {
     color: #f0f0f0;
 }
 
+/* Tambahkan aturan CSS ini */
+#logo-image {
+    max-width: 200px; /* Ukuran maksimum */
+    max-height: 200px; /* Ukuran maksimum */
+    width: auto;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    #logo-image {
+        max-width: 150px; /* Ukuran lebih kecil untuk layar kecil */
+        max-height: 150px;
+    }
+}
+
 .background {
     position: fixed;
     width: 100%;
@@ -26,6 +41,24 @@ body.dark-mode {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-in {
+    animation: fadeIn 2s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 2s forwards;
 }
 
 header {

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = lightboxModal.querySelector('.close');
     const contactForm = document.getElementById('contact-form');
     const loading = document.querySelector('.loading');
+    const links = document.querySelectorAll('a[href^="#"]');
 
     // Toggle dark mode
     toggleTheme.addEventListener('click', () => {
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             logoImage.classList.remove('fade-out');
             logoImage.classList.add('fade-in');
         }
-    }, 5000); // Change logo visibility every 5 seconds
+    }, 2000); // Change logo visibility every 2 seconds
 
     // Modal functionality
     members.forEach(member => {
@@ -81,6 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Form submitted successfully!');
             contactForm.reset();
         }, 2000);
+    });
+
+    // Smooth scroll functionality
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const targetId = link.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth' // Animasi smooth saat scroll ke elemen target
+                });
+            }
+        });
     });
 
     // Hide loading spinner after page load

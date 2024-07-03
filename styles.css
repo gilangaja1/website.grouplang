@@ -4,6 +4,7 @@ body, html {
     font-family: Arial, sans-serif;
     overflow-x: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
+    scroll-behavior: smooth; /* Animasi smooth saat pengguliran */
 }
 
 body.dark-mode {
@@ -54,11 +55,11 @@ body.dark-mode {
 }
 
 .fade-in {
-    animation: fadeIn 2s forwards;
+    animation: fadeIn 3s forwards; /* Ubah durasi menjadi 3 detik */
 }
 
 .fade-out {
-    animation: fadeOut 2s forwards;
+    animation: fadeOut 3s forwards; /* Ubah durasi menjadi 3 detik */
 }
 
 header {
@@ -155,17 +156,24 @@ button {
 
 .contact-form label {
     margin-top: 1rem;
+    width: 80%; /* Lebar label agar sesuai dengan input */
+    text-align: left; /* Posisi teks label menjadi kiri */
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
     width: 80%;
     padding: 0.5rem;
     margin-top: 0.5rem;
+    border: 1px solid #ccc; /* Garis pinggir input */
+    border-radius: 5px; /* Sudut bulat */
 }
 
 .contact-form button {
     margin-top: 1rem;
+    width: 80%;
 }
+
 
 .button {
     background-color: #007BFF;

@@ -12,7 +12,6 @@ body.dark-mode {
     color: #f0f0f0;
 }
 
-/* Tambahkan aturan CSS ini */
 #logo-image {
     max-width: 200px; /* Ukuran maksimum */
     max-height: 200px; /* Ukuran maksimum */
@@ -148,50 +147,16 @@ button {
     }
 }
 
-.contact-form {
+.contact {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.contact-form label {
-    margin-top: 1rem;
-    width: 80%; /* Lebar label agar sesuai dengan input */
-    text-align: left; /* Posisi teks label menjadi kiri */
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 80%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid #ccc; /* Garis pinggir input */
-    border-radius: 5px; /* Sudut bulat */
-}
-
-.contact-form button {
-    margin-top: 1rem;
-    width: 80%;
-}
-
-
-.button {
-    background-color: #007BFF;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.button:active {
-    transform: scale(1.1);
+.whatsapp-logo {
+    width: 100px; /* Sesuaikan ukuran logo WhatsApp sesuai kebutuhan */
+    height: auto;
+    cursor: pointer; /* Tambahkan tanda kursor pointer saat hover */
 }
 
 .modal, #lightbox-modal {
@@ -205,11 +170,6 @@ button {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.8);
     animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 .modal-content {

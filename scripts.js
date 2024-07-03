@@ -88,4 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxModal.style.display = 'none';
         }
     });
+
+    window.addEventListener('load', () => {
+        document.querySelector('.loading').classList.add('hide');
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            document.querySelector('header').classList.add('shrink');
+        } else {
+            document.querySelector('header').classList.remove('shrink');
+        }
+    });
 });

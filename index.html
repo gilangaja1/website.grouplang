@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
     <div class="background"></div>
     <header>
         <div class="logo">L</div>
         <h1>Fotofolio</h1>
         <p>Anggota Tim dan Informasi Magang PKL</p>
-        <button id="toggle-theme">Toggle Theme</button>
+        <button id="toggle-theme" class="button">Toggle Theme</button>
     </header>
     <section class="team fade-in">
         <div class="member" data-member="1">
@@ -67,7 +70,7 @@
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
             
-            <button type="submit">Submit</button>
+            <button type="submit" class="button">Submit</button>
         </form>
     </section>
 

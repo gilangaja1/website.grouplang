@@ -1,80 +1,91 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const body = document.body;
-    const background = document.querySelector('.background');
-    const members = document.querySelectorAll('.member');
-    const modal = document.getElementById('modal');
-    const modalContent = document.getElementById('modal-info');
-    const closeModal = document.querySelector('.close');
-    const contactForm = document.getElementById('contact-form');
-    const lightboxModal = document.getElementById('lightbox-modal');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const closeLightbox = lightboxModal.querySelector('.close');
-
-    background.addEventListener('touchstart', () => {
-        body.classList.toggle('active');
+    const toggleTheme = document.getElementById('toggle-theme');
+    toggleTheme.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
     });
 
-    members.forEach(member => {
-        member.addEventListener('touchstart', () => {
-            background.style.background = `linear-gradient(45deg, ${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const handleScroll = () => {
+        fadeElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                element.classList.add('show');
+            }
         });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Run on page load
 
+    const items = document.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+
+    setInterval(() => {
+        items.forEach((item, index) => {
+            item.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+        currentIndex = (currentIndex + 1) % items.length;
+    }, 3000);
+
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        if (name && email && message) {
+            alert('Form submitted!');
+        } else {
+            alert('Please fill in all fields.');
+        }
+    });
+
+    // Modal and Lightbox functionality
+    const modal = document.getElementById('modal');
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const modalClose = document.querySelector('.modal .close');
+    const lightboxClose = document.querySelector('#lightbox-modal .close');
+    
+    const members = document.querySelectorAll('.member');
+    members.forEach(member => {
         member.addEventListener('click', () => {
             const memberId = member.getAttribute('data-member');
-            const memberImageSrc = member.querySelector('img').src;
-            showModal(memberId, memberImageSrc);
+            document.getElementById('modal-info').textContent = `Details of Member ${memberId}`;
+            modal.style.display = 'block';
         });
     });
 
-    closeModal.addEventListener('click', () => {
-        modal.style.display = "none";
+    modalClose.addEventListener('click', () => {
+        modal.style.display = 'none';
     });
 
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
-            modal.style.display = "none";
+            modal.style.display = 'none';
         }
     });
 
-    contactForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        alert('Form submitted!');
+    // Lightbox for images
+    const lightboxImages = document.querySelectorAll('.member img');
+    const lightboxImage = document.getElementById('lightbox-image');
+    
+    lightboxImages.forEach(img => {
+        img.addEventListener('click', (event) => {
+            event.stopPropagation();
+            lightboxImage.src = img.src;
+            lightboxModal.style.display = 'block';
+        });
     });
 
-    closeLightbox.addEventListener('click', () => {
-        lightboxModal.style.display = "none";
+    lightboxClose.addEventListener('click', () => {
+        lightboxModal.style.display = 'none';
     });
 
     window.addEventListener('click', (event) => {
         if (event.target === lightboxModal) {
-            lightboxModal.style.display = "none";
+            lightboxModal.style.display = 'none';
         }
     });
 });
-
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-function showModal(memberId, memberImageSrc) {
-    const memberDetails = {
-        "1": "Detail lengkap anggota 1.",
-        "2": "Detail lengkap anggota 2.",
-        "3": "Detail lengkap anggota 3.",
-        "4": "Detail lengkap anggota 4."
-    };
-
-    const modalContent = document.getElementById('modal-info');
-    modalContent.innerHTML = memberDetails[memberId];
-    document.getElementById('modal').style.display = "block";
-
-    // Display image in lightbox
-    const lightboxImage = document.getElementById('lightbox-image');
-    lightboxImage.src = memberImageSrc;
-    document.getElementById('lightbox-modal').style.display = "block";
-}

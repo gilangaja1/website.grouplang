@@ -13,6 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const loading = document.querySelector('.loading');
     const links = document.querySelectorAll('a[href^="#"]');
 
+    const backToTopButton = document.createElement('button');
+    backToTopButton.id = 'back-to-top';
+    backToTopButton.textContent = 'Back to Top';
+    document.body.appendChild(backToTopButton);
+
+    // Show or hide the button based on scroll position
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    };
+
+    // Scroll to top when the button is clicked
+    backToTopButton.onclick = function() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    };
+    
     // Toggle dark mode
     toggleTheme.addEventListener('click', () => {
         body.classList.toggle('dark-mode');

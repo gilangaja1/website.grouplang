@@ -243,3 +243,23 @@ button {
 .loading.hide {
     display: none;
 }
+
+/* Additional CSS for Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 50%; /* Menengahkan horizontalnya */
+    transform: translateX(50%); /* Pusatkan secara horizontal */
+    z-index: 1000;
+    display: none; /* Mulai tersembunyi */
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#back-to-top:hover {
+    background-color: #0056b3;
+}

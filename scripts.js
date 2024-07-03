@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.querySelector(".loading");
+    const spinner = document.querySelector(".spinner");
+
+    // Show the preloader
+    loader.classList.remove("hide");
+
+    // Simulate loading delay
+    setTimeout(function() {
+        // Hide the preloader
+        loader.classList.add("hide");
+    }, 2000); // You can adjust the delay time as needed
+
     const toggleTheme = document.getElementById('toggle-theme');
     const body = document.body;
     const logoImage = document.getElementById('logo-image');
@@ -15,15 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const backToTopButton = document.createElement('button');
     backToTopButton.id = 'back-to-top';
-    backToTopButton.textContent = 'Back to Top';
+    backToTopButton.classList.add('scroll-to-top');
+    backToTopButton.textContent = '↑';
     document.body.appendChild(backToTopButton);
 
     // Show or hide the button based on scroll position
     window.onscroll = function() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style.display = 'block';
+            backToTopButton.classList.add('show');
         } else {
-            backToTopButton.style.display = 'none';
+            backToTopButton.classList.remove('show');
         }
     };
 
@@ -32,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
     };
-    
+
     // Toggle dark mode
     toggleTheme.addEventListener('click', () => {
         body.classList.toggle('dark-mode');

@@ -11,6 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
         loader.classList.add("hide");
     }, 2000); // You can adjust the delay time as needed
 
+    // Add fade-in and fade-out functionality
+    const chatElement = document.querySelector('.chat'); // Adjust the selector to match your chat element
+
+    function showChat() {
+        chatElement.classList.add('fade-in');
+        chatElement.classList.remove('fade-out');
+    }
+
+    function hideChat() {
+        chatElement.classList.add('fade-out');
+        chatElement.classList.remove('fade-in');
+    }
+
+    setTimeout(showChat, 2000);
+
     const toggleTheme = document.getElementById('toggle-theme');
     const body = document.body;
     const logoImage = document.getElementById('logo-image');
@@ -136,5 +151,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide loading spinner after page load
     window.addEventListener('load', () => {
         loading.classList.add('hide');
+    });
+
+    // Intersection Observer API for animation on elements entering viewport
+    const fadeInElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    fadeInElements.forEach(element => {
+        observer.observe(element);
     });
 });

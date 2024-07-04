@@ -85,6 +85,7 @@ header {
     z-index: 10;
     text-align: center;
     padding: 2rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header.shrink {
@@ -99,11 +100,32 @@ header.shrink {
 
 button {
     margin: 1rem 0;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
 }
 
 .team, .internship, .testimonials, .contact {
     padding: 2rem;
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.team.show, .internship.show, .testimonials.show, .contact.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .member {
@@ -128,15 +150,19 @@ button {
     transform: translateY(-10px);
 }
 
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
+.social-icons {
+    margin-top: 2rem;
 }
 
-.fade-in.show {
-    opacity: 1;
-    transform: translateY(0);
+.social-icons a {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: #3498db;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #2980b9;
 }
 
 .carousel {

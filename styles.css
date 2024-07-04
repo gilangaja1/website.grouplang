@@ -68,6 +68,24 @@ body.dark-mode {
     to { opacity: 0; }
 }
 
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.5); }
+    to { transform: scale(1); }
+}
+
+.slide-in {
+    animation: slideIn 1s forwards;
+}
+
+.zoom-in {
+    animation: zoomIn 1s forwards;
+}
+
 .fade-in {
     animation: fadeIn 3s forwards; /* Ubah durasi menjadi 3 detik */
 }

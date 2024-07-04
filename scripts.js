@@ -46,6 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTopButton.textContent = '↑';
     document.body.appendChild(backToTopButton);
 
+    // Google Maps initialization
+    initMap();
+
     // Show or hide the button based on scroll position
     window.onscroll = function() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -171,3 +174,15 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(element);
     });
 });
+
+function initMap() {
+    const lokasi = { lat: -8.3405, lng: 115.0920 }; // Koordinat lokasi Anda
+    const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: lokasi
+    });
+    const marker = new google.maps.Marker({
+        position: lokasi,
+        map: map
+    });
+}

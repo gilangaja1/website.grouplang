@@ -409,3 +409,8 @@ body.dark-mode .scroll-to-top {
 body.dark-mode .scroll-to-top:hover {
     background-color: #16a085;
 }
+
+#map {
+    height: 400px;
+    width: 100%;
+}

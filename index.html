@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotofolio</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #map {
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+        }
+        #map iframe {
+            border: 0;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div class="loading hide">
@@ -69,10 +86,12 @@
             </a>
         </div>
         <h2>Lokasi Kami</h2>
-        <div id="map" style="height: 400px; width: 100%;"></div>
+        <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d348.63281202224834!2d115.18643121080687!3d-8.66013107158587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1720134106577!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </section>    
 
-    <!-- Modal -->
+    <!-- Modal --> 
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -92,19 +111,5 @@
         <p>&copy; 2024 Fotofolio. All rights reserved.</p>
     </footer>
     <script src="scripts.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-    <script>
-        function initMap() {
-            var lokasi = {lat: -8.3405, lng: 115.0920}; // Koordinat lokasi Anda
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: lokasi
-            });
-            var marker = new google.maps.Marker({
-                position: lokasi,
-                map: map
-            });
-        }
-    </script>
 </body>
 </html>

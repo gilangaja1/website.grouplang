@@ -4,7 +4,7 @@ body, html {
     font-family: Arial, sans-serif;
     overflow-x: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
-    scroll-behavior: smooth; /* Animasi smooth saat pengguliran */
+    scroll-behavior: smooth;
 }
 
 body.dark-mode {
@@ -13,12 +13,29 @@ body.dark-mode {
 }
 
 #logo-image {
-    max-width: 200px; /* Ukuran maksimum */
-    max-height: 200px; /* Ukuran maksimum */
+    max-width: 200px;
+    max-height: 200px;
     width: auto;
     height: auto;
 }
 
+#logo-image.fade-in {
+    animation: fadeIn 2s forwards;
+}
+
+#logo-image.fade-out {
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
 @media (max-width: 600px) {
     #logo-image {
         max-width: 150px; /* Ukuran lebih kecil untuk layar kecil */

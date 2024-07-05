@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loader = document.querySelector(".loading");
-    const spinner = document.querySelector(".spinner");
 
     // Show the preloader
     loader.classList.remove("hide");
@@ -9,7 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(function() {
         // Hide the preloader
         loader.classList.add("hide");
-    }, 2000); // You can adjust the delay time as needed
+    }, 2000);
+
+    // Logo fade-in and fade-out
+    const logoImage = document.getElementById('logo-image');
+    function toggleLogo() {
+        if (logoImage.classList.contains('fade-in')) {
+            logoImage.classList.remove('fade-in');
+            logoImage.classList.add('fade-out');
+        } else {
+            logoImage.classList.remove('fade-out');
+            logoImage.classList.add('fade-in');
+        }
+    }
+
+    setInterval(toggleLogo, 2000); // Toggle logo visibility every 2 seconds
+
+    // Toggle dark mode
+    const toggleTheme = document.getElementById('toggle-theme');
+    const body = document.body;
+
+    toggleTheme.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+    });
 
     // Add fade-in and fade-out functionality
     const chatElement = document.querySelector('.chat'); // Adjust the selector to match your chat element
@@ -26,9 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(showChat, 2000);
 
-    const toggleTheme = document.getElementById('toggle-theme');
-    const body = document.body;
-    const logoImage = document.getElementById('logo-image');
     const members = document.querySelectorAll('.member');
     const modal = document.getElementById('modal');
     const modalContent = modal.querySelector('.modal-content');
@@ -37,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxClose = lightboxModal.querySelector('.close');
     const contactForm = document.getElementById('contact-form');
-    const loading = document.querySelector('.loading');
     const links = document.querySelectorAll('a[href^="#"]');
 
     const backToTopButton = document.createElement('button');
@@ -63,24 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
     };
-
-    // Toggle dark mode
-    toggleTheme.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-    });
-
-    // Fade in and out animation for the logo
-    logoImage.classList.add('fade-in');
-
-    setInterval(() => {
-        if (logoImage.classList.contains('fade-in')) {
-            logoImage.classList.remove('fade-in');
-            logoImage.classList.add('fade-out');
-        } else {
-            logoImage.classList.remove('fade-out');
-            logoImage.classList.add('fade-in');
-        }
-    }, 2000); // Change logo visibility every 2 seconds
 
     // Modal functionality
     members.forEach(member => {
@@ -125,11 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form submission with loading spinner
     contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        loading.classList.remove('hide');
+        loader.classList.remove('hide');
 
         // Simulate form submission process
         setTimeout(() => {
-            loading.classList.add('hide');
+            loader.classList.add('hide');
             alert('Form submitted successfully!');
             contactForm.reset();
         }, 2000);
@@ -145,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetElement) {
                 targetElement.scrollIntoView({
-                    behavior: 'smooth' // Animasi smooth saat scroll ke elemen target
+                    behavior: 'smooth'
                 });
             }
         });
@@ -153,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hide loading spinner after page load
     window.addEventListener('load', () => {
-        loading.classList.add('hide');
+        loader.classList.add('hide');
     });
 
     // Intersection Observer API for animation on elements entering viewport
@@ -176,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initMap() {
-    const lokasi = { lat: -8.3405, lng: 115.0920 }; // Koordinat lokasi Anda
+    const lokasi = { lat: -8.3405, lng: 115.0920 };
     const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: lokasi

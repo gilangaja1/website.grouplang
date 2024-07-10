@@ -9,15 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide the preloader
         loader.classList.add("hide");
     }, 2000);
-      // Testimonials carousel
-      const carouselItems = document.querySelectorAll('.carousel-item');
-      let currentIndex = 0;
-  
-      function showNextTestimonial() {
-          carouselItems[currentIndex].classList.remove('active');
-          currentIndex = (currentIndex + 1) % carouselItems.length;
-          carouselItems[currentIndex].classList.add('active');
-      }
+    
+    // Testimonials carousel
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+
+    function showNextTestimonial() {
+        carouselItems[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        carouselItems[currentIndex].classList.add('active');
+    }
 
     // Logo fade-in and fade-out
     const logoImage = document.getElementById('logo-image');
@@ -30,12 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             logoImage.classList.add('fade-in');
         }
     }
-     // Show the first testimonial
-     carouselItems[currentIndex].classList.add('active');
-
-     // Change testimonial every 5 seconds
-     setInterval(showNextTestimonial, 5000);
-     
+    
+    // Show the first testimonial
+    carouselItems[currentIndex].classList.add('active');
+    
+    // Change testimonial every 5 seconds
+    setInterval(showNextTestimonial, 5000);
+    
     setInterval(toggleLogo, 2000); // Toggle logo visibility every 2 seconds
 
     // Toggle dark mode
@@ -163,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-// python
 
     // Hide loading spinner after page load
     window.addEventListener('load', () => {
@@ -186,6 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fadeInElements.forEach(element => {
         observer.observe(element);
+    });
+
+    // Menambahkan kelas animasi fade-in-text pada elemen teks
+    const textElements = document.querySelectorAll('h1, h2, p');
+    textElements.forEach(element => {
+        element.classList.add('fade-in-text');
     });
 });
 

@@ -863,6 +863,29 @@ img:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Parallax container */
+.parallax-container {
+    position: relative;
+    overflow: hidden;
+    height: 500px; /* Adjust the height as needed */
+}
+
+/* Parallax background */
+.parallax-background {
+    background-image: url('path/to/your/background-image.jpg'); /* Replace with your image path */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateZ(-1px) scale(2); /* Adjust the scale as needed */
+    z-index: -1;
+}
+
 /* Media queries untuk responsif */
 @media (max-width: 768px) {
     header {

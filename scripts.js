@@ -1,16 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loader = document.querySelector(".loading");
+    const apiKey = 'b6cdc1298aa9f0f5efd1d76cd2b3b351';
+    const city = 'Bali';
 
-    // Show the preloader
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // Tambahkan ini untuk melihat data yang diterima di konsol
+            const weatherInfo = document.getElementById('weather-info');
+            if (data.main && data.weather) {
+                weatherInfo.innerHTML = `
+                    <p>Lokasi: ${data.name}</p>
+                    <p>Suhu: ${data.main.temp} °C</p>
+                    <p>Cuaca: ${data.weather[0].description}</p>
+                `;
+            } else {
+                weatherInfo.innerHTML = '<p>Data cuaca tidak tersedia</p>';
+            }
+        })
+        .catch(error => console.error('Error fetching weather data:', error));
+
+    const loader = document.querySelector(".loading");
     loader.classList.remove("hide");
 
-    // Simulate loading delay
-    setTimeout(function() {
-        // Hide the preloader
+    setTimeout(() => {
         loader.classList.add("hide");
     }, 2000);
-    
-    // Testimonials carousel
+
     const carouselItems = document.querySelectorAll('.carousel-item');
     let currentIndex = 0;
 
@@ -20,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselItems[currentIndex].classList.add('active');
     }
 
-    // Logo fade-in and fade-out
     const logoImage = document.getElementById('logo-image');
     function toggleLogo() {
         if (logoImage.classList.contains('fade-in')) {
@@ -31,16 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
             logoImage.classList.add('fade-in');
         }
     }
-    
-    // Show the first testimonial
-    carouselItems[currentIndex].classList.add('active');
-    
-    // Change testimonial every 5 seconds
-    setInterval(showNextTestimonial, 5000);
-    
-    setInterval(toggleLogo, 2000); // Toggle logo visibility every 2 seconds
 
-    // Toggle dark mode
+    carouselItems[currentIndex].classList.add('active');
+    setInterval(showNextTestimonial, 5000);
+    setInterval(toggleLogo, 2000);
+
     const toggleTheme = document.getElementById('toggle-theme');
     const body = document.body;
 
@@ -48,17 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.toggle('dark-mode');
     });
 
-    // Add fade-in and fade-out functionality
-    const chatElement = document.querySelector('.chat'); // Adjust the selector to match your chat element
-
+    const chatElement = document.querySelector('.chat');
     function showChat() {
         chatElement.classList.add('fade-in');
         chatElement.classList.remove('fade-out');
-    }
-
-    function hideChat() {
-        chatElement.classList.add('fade-out');
-        chatElement.classList.remove('fade-in');
     }
 
     setTimeout(showChat, 2000);
@@ -79,10 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTopButton.textContent = '↑';
     document.body.appendChild(backToTopButton);
 
-    // Google Maps initialization
-    initMap();
-
-    // Show or hide the button based on scroll position
     window.onscroll = function() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             backToTopButton.classList.add('show');
@@ -91,13 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Scroll to top when the button is clicked
     backToTopButton.onclick = function() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     };
 
-    // Modal functionality
     members.forEach(member => {
         member.addEventListener('click', () => {
             const memberId = member.getAttribute('data-member');
@@ -117,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Lightbox functionality
     members.forEach(member => {
         member.addEventListener('click', (event) => {
             if (event.target.tagName === 'IMG') {
@@ -137,12 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Form submission with loading spinner
     contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
         loader.classList.remove('hide');
 
-        // Simulate form submission process
         setTimeout(() => {
             loader.classList.add('hide');
             alert('Form submitted successfully!');
@@ -150,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     });
 
-    // Smooth scroll functionality
     links.forEach(link => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
@@ -166,12 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Hide loading spinner after page load
     window.addEventListener('load', () => {
         loader.classList.add('hide');
     });
 
-    // Intersection Observer API for animation on elements entering viewport
     const fadeInElements = document.querySelectorAll('.fade-in');
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -189,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(element);
     });
 
-    // Menambahkan kelas animasi fade-in-text pada elemen teks
     const textElements = document.querySelectorAll('h1, h2, p');
     textElements.forEach(element => {
         element.classList.add('fade-in-text');
